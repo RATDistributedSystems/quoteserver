@@ -1,0 +1,2 @@
+# quoteserver
+basic quoteserver
