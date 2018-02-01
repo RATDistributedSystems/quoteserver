@@ -1,10 +1,6 @@
 package main
 
-import "net"
-import "fmt"
-import "bufio"
-import "os"
-
+/*
 func main() {
 
   // connect to this socket
@@ -19,3 +15,4 @@ func main() {
     message, _ := bufio.NewReader(conn).ReadString('\n')
     fmt.Print("Message from server: "+message)
 }
+*/
