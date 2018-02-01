@@ -12,7 +12,7 @@ import (
 )
 
 const (
-    CONN_HOST = "192.168.0.133"
+    CONN_HOST = "localhost"
     CONN_PORT = "3333"
     CONN_TYPE = "tcp"
 )
@@ -51,7 +51,7 @@ func handleRequest(conn net.Conn) {
     result := strings.Split(string(message), ",")
     //if not enough arguments, or incorrect format
     //send NA and close connection
-    if len(result) != 2 || len(result[0]) != 3 {
+    if len(result) != 2 || len(result[0]) > 3 {
       conn.Write([]byte("NA"))
       conn.Close()
     //correct input
