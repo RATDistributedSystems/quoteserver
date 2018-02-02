@@ -59,7 +59,7 @@ func handleRequest(conn net.Conn) {
 	t := time.Now().UTC().UnixNano()
 	time := strconv.Itoa(int(t))
 	crypto := "7777777777"
-	response := fmt.Sprintf("%s, %s, %s, %s, %s", stock_price, stock_sym, username, time, crypto)
+	response := fmt.Sprintf("%s,%s,%s,%s,%s", stock_price, stock_sym, username, time, crypto)
 	log.Printf("Response: %s\n", response)
 	fmt.Fprintf(conn, response)
 
