@@ -6,6 +6,7 @@ import (
 	"log"
 	"math/rand"
 	"net"
+	"net/textproto"
 	"strconv"
 	"strings"
 	"time"
@@ -38,10 +39,10 @@ func main() {
 
 // Handles incoming requests.
 func handleRequest(conn net.Conn) {
-	message, _ := bufio.NewReader(conn).ReadString('\n')
-	message = strings.TrimSpace(strings.TrimSuffix(message, "\n"))
-	log.Printf("Recieved request: %s", message)
-	result := strings.Split(string(message), ",")
+	tp := textproto.NewReader(bufio.NewReader(conn))
+	msg, _ := tp.ReadLine()
+	log.Printf("Recieved request: %s", msg)
+	result := strings.Split(string(msg), ",")
 	//if not enough arguments, or incorrect format
 	//send NA and close connection
 	if len(result) != 2 || len(result[0]) > 3 {
