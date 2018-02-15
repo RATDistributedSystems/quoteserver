@@ -39,6 +39,7 @@ func main() {
 
 // Handles incoming requests.
 func handleRequest(conn net.Conn) {
+	defer conn.Close()
 	tp := textproto.NewReader(bufio.NewReader(conn))
 	msg, _ := tp.ReadLine()
 	log.Printf("Recieved request: %s", msg)
@@ -48,7 +49,6 @@ func handleRequest(conn net.Conn) {
 	if len(result) != 2 || len(result[0]) > 3 {
 		log.Println("Invalid request")
 		conn.Write([]byte("NA"))
-		conn.Close()
 		return
 	}
 
@@ -63,7 +63,4 @@ func handleRequest(conn net.Conn) {
 	response := fmt.Sprintf("%s,%s,%s,%s,%s", stock_price, stock_sym, username, time, crypto)
 	log.Printf("Response: %s\n", response)
 	fmt.Fprintf(conn, response)
-
-	// Close the connection when you're done with it.
-	conn.Close()
 }
