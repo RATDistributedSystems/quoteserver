@@ -17,7 +17,7 @@ import (
 var confs = utilities.GetConfigurationFile("config.json")
 
 func main() {
-	addr, protocol := confs.GetServerDetails("quote")
+	addr, protocol := confs.GetListnerDetails("quote")
 	l, err := net.Listen(protocol, addr)
 	if err != nil {
 		log.Fatalln("Error listening:", err.Error())
