@@ -14,7 +14,7 @@ import (
 	"github.com/RATDistributedSystems/utilities"
 )
 
-var confs = utilities.GetConfigurationFile("config.json")
+var confs = utilities.Load()
 
 func main() {
 	addr, protocol := confs.GetListnerDetails("quote")
